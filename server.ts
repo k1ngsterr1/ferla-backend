@@ -9,7 +9,7 @@ const port = process.env.PORT;
 const bodyParser = require("body-parser");
 
 const corsOptions = {
-  origin: "https://spark-admin-production.up.railway.app",
+  // origin: "https://spark-admin-production.up.railway.app",
   credentials: true,
   methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
   allowedHeaders: ["Authorization", "Content-Type"],
