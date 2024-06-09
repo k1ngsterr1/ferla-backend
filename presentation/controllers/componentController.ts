@@ -38,7 +38,7 @@ class ComponentController {
             res.status(201).json({ message: "Component added successfully." });
         } catch(error){
             console.log(error);
-            res.status(500).json({ message: "Error adding component." });
+            res.status(500).json({ message: "Error adding the component." });
         }
     }
 
@@ -71,7 +71,7 @@ class ComponentController {
 
             res.status(200).json({ message: "Component deleted successfully." });
         } catch(error){
-            res.status(500).json({ message: "Error deleting component." });
+            res.status(500).json({ message: "Error deleting the component." });
         }
     }
 
@@ -95,7 +95,7 @@ class ComponentController {
             res.status(200).json({ message: "Component updated successfully." });
         } catch(error){
             console.log(error);
-            res.status(500).json({ message: "Error updating component." });
+            res.status(500).json({ message: "Error updating the component." });
         }
     }
 }

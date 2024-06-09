@@ -32,7 +32,7 @@ export class CartRepository implements ICartRepository{
         }
     }
 
-    async findCartById(id: number, errors: ErrorDetails[]): Promise<Cart | null>{
+    async findById(id: number, errors: ErrorDetails[]): Promise<Cart | null>{
         try{
             const cart = await sequelize.getRepository(Cart).findByPk(id);
 
