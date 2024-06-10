@@ -2,6 +2,9 @@
 # Dependency directories
 node_modules/
 
+# .ENV
+.env
+
 # Optional npm cache directory
 .npm
 

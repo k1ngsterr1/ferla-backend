@@ -3,13 +3,15 @@ import { Cart } from "@infrastructure/models/cartModel";
 import { Component } from "@infrastructure/models/componentModels";
 import { Sequelize } from "sequelize-typescript";
 
+const dotenv = require("dotenv").config({ path: "../.env" });
+
 // Подключение к базе данных
 const sequelize = new Sequelize({
   repositoryMode: true,
-  database: "verceldb",
-  host: "ep-spring-sun-a4chi1fn-pooler.us-east-1.aws.neon.tech",
-  username: "default",
-  password: "aWi2dHprAVJ5",
+  database: process.env.POSTGRES_DATABASE,
+  host: process.env.POSTGRES_HOST,
+  username: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
   port: 5432,
   dialect: "postgres",
   dialectOptions: {
