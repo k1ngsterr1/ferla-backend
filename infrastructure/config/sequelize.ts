@@ -8,7 +8,7 @@ const sequelize = new Sequelize({
     database: "verceldb",
     host: "ep-spring-sun-a4chi1fn-pooler.us-east-1.aws.neon.tech",
     username: "default",
-    password: "aWi2dHprAVJ5",
+    password: "Uzs8RlAumI0F",
     port: 5432,
     dialect: "postgres",
     dialectOptions: {
