@@ -1,5 +1,5 @@
-import { IBlogCardRepository } from "@core/interfaces/IBlogCartRepository";
-import { NewBlogCardInput } from "@core/utils/types";
+import { IBlogCardRepository } from "@core/interfaces/repositories/IBlogCartRepository";
+import { NewBlogCardInput } from "@core/utils/Cart/BlogCard";
 import { ErrorDetails } from "@core/utils/utils";
 import { BlogCard } from "@infrastructure/models/blogCardModel";
 import { BlogCardRepository } from "@infrastructure/repositories/BlogCardRepository";

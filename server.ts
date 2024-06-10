@@ -3,6 +3,7 @@ const express = require("express");
 const dotenv = require("dotenv").config({ path: "./.env" });
 import cartRoutes from "@infrastructure/routes/cartRoutes";
 import componentRoutes from "@infrastructure/routes/componentRoutes";
+import blogRoutes from "@infrastructure/routes/blogRoutes";
 
 const app = express();
 const port = process.env.PORT;
@@ -25,6 +26,9 @@ app.use("/api/components", componentRoutes);
 
 //Cart routes
 app.use("/api/carts", cartRoutes);
+
+// Blog Routes
+app.use("/api/blog", blogRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
