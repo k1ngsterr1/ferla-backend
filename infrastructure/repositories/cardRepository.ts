@@ -1,5 +1,5 @@
-import { IBlogCardRepository } from "@core/interfaces/IBlogCartRepository";
-import { NewBlogCardInput } from "@core/utils/types";
+import { NewBlogCardInput } from "@core/utils/Cart/BlogCard";
+import { IBlogCardRepository } from "@core/interfaces/repositories/IBlogCartRepository";
 import { BlogCard } from "@infrastructure/models/blogCardModel";
 import sequelize from "infrastructure/config/sequelize";
 

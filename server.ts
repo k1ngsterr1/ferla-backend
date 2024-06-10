@@ -1,6 +1,6 @@
 const cors = require("cors");
 const express = require("express");
-const dotenv = require("dotenv").config({ path: ".env" });
+const dotenv = require("dotenv").config({ path: "./.env" });
 import cartRoutes from "@infrastructure/routes/cartRoutes";
 import componentRoutes from "@infrastructure/routes/componentRoutes";
 
@@ -18,7 +18,7 @@ app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
 
 app.use(express.json());
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 //Component routes
 app.use("/api/components", componentRoutes);

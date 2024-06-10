@@ -6,3 +6,9 @@ export interface BlogCardAttributes {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export type NewBlogCardInput = {
+  image: string;
+  title: string;
+  href: string;
+};

@@ -8,7 +8,6 @@ import {
   PrimaryKey,
   Unique,
   Default,
-  ForeignKey,
 } from "sequelize-typescript";
 
 import { v4 as uuidv4 } from "uuid";
@@ -33,10 +32,6 @@ export class BlogCard extends Model<BlogCardAttributes> {
 
   @Column(DataType.STRING)
   title!: string;
-
-  @ForeignKey(() => Website)
-  @Column(DataType.UUID)
-  websiteId!: string;
 
   @Column(DataType.STRING)
   href!: string;
