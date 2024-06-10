@@ -15,6 +15,11 @@
     },
     "outDir": "./dist"
   },
-  "include": ["**/*.ts"],
+  "include": [
+    "server.ts",
+    "core/**/*.ts",
+    "infrastructure/**/*.ts",
+    "presentation/**/*.ts"
+  ],
   "exclude": ["node_modules", "dist"]
 }
