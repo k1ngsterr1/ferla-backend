@@ -51,6 +51,10 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Internal Server Error" });
 });
 
+app.get("/", (req, res) => {
+  res.send("Express on Vercel");
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
