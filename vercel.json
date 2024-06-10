@@ -2,34 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "./server.ts",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "core/**/*.ts",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "infrastructure/**/*.ts",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "presentation/**/*.ts",
+      "src": "server.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/blog",
-      "dest": "/presentation/controllers/blogController.ts"
-    },
-    {
-      "src": "/api/cart",
-      "dest": "/presentation/controllers/cartController.ts"
-    },
-    {
-      "src": "/api/component",
-      "dest": "/presentation/controllers/componentController.ts"
+      "src": "/api/(.*)",
+      "dest": "/server.ts"
     }
   ]
 }
