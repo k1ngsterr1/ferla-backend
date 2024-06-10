@@ -12,6 +12,7 @@
     "ts-node": "^10.9.2"
   },
   "scripts": {
+    "build": "tsc",
     "start": "nodemon --exec ts-node -r tsconfig-paths/register server.ts"
   },
   "devDependencies": {
