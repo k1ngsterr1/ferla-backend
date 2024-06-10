@@ -30,6 +30,16 @@ app.use("/api/carts", cartRoutes);
 // Blog Routes
 app.use("/api/blog", blogRoutes);
 
+app.use((req, res, next) => {
+  res.status(404).json({ message: "Endpoint not found" });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(`Error occurred: ${err.message}`);
+  res.status(500).json({ message: "Internal Server Error" });
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
