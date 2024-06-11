@@ -20,11 +20,12 @@ class CartController {
     async addCart(req: Request, res: Response): Promise<void>{
         const errors: ErrorDetails[] = [];
         try{
+            console.log(req.body);
             const request: AddCartRequest = {
                 code: req.body.code,
                 name: req.body.name,
                 description: req.body.description,
-                img_url: req.body.img_url,
+                img_url: req.body.image,
                 price: req.body.price
             }
 
