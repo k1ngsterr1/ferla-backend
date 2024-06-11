@@ -7,6 +7,11 @@ export interface UpdateComponentRequest extends ComponentDetails {
     id: number;
     code: string;
 }
+export interface UploadImageRequest extends Partial<ComponentDetails> {
+    id: number;
+    code: string;
+}
+
 export type DeleteComponentRequest = {
     id: number;
     code: string;

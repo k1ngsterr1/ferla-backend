@@ -9,6 +9,9 @@ import cartRoutes from "@infrastructure/routes/cartRoutes";
 import componentRoutes from "@infrastructure/routes/componentRoutes";
 import blogRoutes from "@infrastructure/routes/blogRoutes";
 
+import path from "path";
+export const base_url: string = "http://localhost:4000";
+
 const app = express();
 const port = process.env.PORT || 4001;
 
@@ -38,6 +41,7 @@ app.use("/api/carts", cartRoutes);
 
 // Blog routes
 app.use("/api/blog", blogRoutes);
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
