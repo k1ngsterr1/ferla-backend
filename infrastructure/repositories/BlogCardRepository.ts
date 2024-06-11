@@ -1,7 +1,7 @@
 import { IBlogCardRepository } from "@core/interfaces/repositories/IBlogCartRepository";
-import { NewBlogCardInput } from "@core/utils/Cart/BlogCard";
 import { BlogCard } from "@infrastructure/models/blogCardModel";
 import sequelize from "@infrastructure/config/sequelize";
+import { NewBlogCardInput } from "@core/utils/BlogCard/types";
 
 export class BlogCardRepository implements IBlogCardRepository {
   // Добавление карточки блога
