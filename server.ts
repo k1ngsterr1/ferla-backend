@@ -8,11 +8,10 @@ dotenv.config({ path: "./.env" });
 import cartRoutes from "@infrastructure/routes/cartRoutes";
 import componentRoutes from "@infrastructure/routes/componentRoutes";
 import path from "path";
-export const base_url: string = "http://localhost:4000";
 import blogRoutes from "@infrastructure/routes/blogRoutes";
 
-import path from "path";
-export const base_url: string = "http://localhost:4000";
+export const base_url: string =
+  "https://ferla-backend-production.up.railway.app/";
 
 const app = express();
 const port = process.env.PORT || 4001;
@@ -43,7 +42,7 @@ app.use("/api/carts", cartRoutes);
 
 // Blog routes
 app.use("/api/blog", blogRoutes);
-app.use(express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, "uploads")));
 
 app.use(express.static(path.join(__dirname, "uploads")));
 
