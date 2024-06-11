@@ -6,9 +6,9 @@ import { Sequelize } from "sequelize-typescript";
 const sequelize = new Sequelize({
     repositoryMode: true,
     database: "verceldb",
-    host: "ep-spring-sun-a4chi1fn-pooler.us-east-1.aws.neon.tech",
+    host: "ep-curly-wind-a4suq6rv-pooler.us-east-1.aws.neon.tech",
     username: "default",
-    password: "Uzs8RlAumI0F",
+    password: "ZPL9zFU5kQOY",
     port: 5432,
     dialect: "postgres",
     dialectOptions: {

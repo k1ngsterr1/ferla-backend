@@ -111,7 +111,6 @@ class ComponentController {
                 code: req.body.code,
                 value: req.body.image
             }
-            console.log('works');
         
             await this.uploadImageUseCase.execute(request, errors);
         
