@@ -10,7 +10,7 @@ import componentRoutes from "@infrastructure/routes/componentRoutes";
 import blogRoutes from "@infrastructure/routes/blogRoutes";
 
 import path from "path";
-export const base_url: string = "http://localhost:4000";
+export const base_url: string = "https://ferla-backend-production.up.railway.app";
 
 const app = express();
 const port = process.env.PORT || 4001;
