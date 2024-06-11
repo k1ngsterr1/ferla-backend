@@ -17,7 +17,13 @@ export class ComponentRepository implements IComponentRepository{
 
     async findComponents(errors: ErrorDetails[]): Promise<Component[] | null>{
         try{
-            const components = await sequelize.getRepository(Component).findAll();
+            const components = await sequelize.getRepository(Component).findAll(
+                {
+                    order: [
+                        ['id', 'ASC'],
+                    ],
+                }
+            );
 
             if(!components){
                 errors.push(new ErrorDetails(404, "Components not found"));

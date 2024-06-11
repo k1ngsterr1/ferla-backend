@@ -1,3 +1,4 @@
+import { BlogCardAttributes } from "@core/utils/BlogCard/types";
 import {
   Table,
   Column,
@@ -11,7 +12,6 @@ import {
 } from "sequelize-typescript";
 
 import { v4 as uuidv4 } from "uuid";
-import { BlogCardAttributes } from "@core/utils/Cart/BlogCard";
 
 // Модель карточки блога со всеми аттрибутами
 @Table({

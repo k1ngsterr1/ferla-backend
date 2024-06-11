@@ -1,5 +1,5 @@
 import { AddCardBlog } from "@core/use_cases/Blog/AddCardBlog";
-import { NewBlogCardInput } from "@core/utils/Cart/BlogCard";
+import { NewBlogCardInput } from "@core/utils/BlogCard/types";
 import { ErrorDetails } from "@core/utils/utils";
 import { Request, Response } from "express";
 

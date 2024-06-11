@@ -13,7 +13,7 @@ import path from "path";
 export const base_url: string = "https://ferla-backend-production.up.railway.app";
 
 const app = express();
-const port = process.env.PORT || 4001;
+const port = process.env.PORT;
 
 const corsOptions = {
   credentials: true,
