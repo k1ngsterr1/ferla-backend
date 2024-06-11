@@ -12,15 +12,14 @@ const sequelize = new sequelize_typescript_1.Sequelize({
     host: process.env.POSTGRES_HOST,
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
-    port: 5432,
     dialect: "postgres",
+    logging: false,
     dialectOptions: {
         ssl: {
             require: true,
             rejectUnauthorized: false,
         },
     },
-    logging: false,
     models: [componentModels_1.Component, cartModel_1.Cart, blogCardModel_1.BlogCard],
 });
 exports.default = sequelize;

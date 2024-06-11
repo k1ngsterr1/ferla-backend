@@ -27,11 +27,12 @@ class CartController {
         return __awaiter(this, void 0, void 0, function* () {
             const errors = [];
             try {
+                console.log(req.body);
                 const request = {
                     code: req.body.code,
                     name: req.body.name,
                     description: req.body.description,
-                    img_url: req.body.img_url,
+                    img_url: req.body.image,
                     price: req.body.price
                 };
                 yield this.addCartUseCase.execute(request, errors);

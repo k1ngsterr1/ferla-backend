@@ -1,4 +1,4 @@
-import { IJWTService } from "@core/interfaces/IJWTService";
+import { IJWTService } from "@core/interfaces/services/IJWTService";
 import { UserPayload } from "@core/utils/User/types";
 import jwt from "jsonwebtoken";
 

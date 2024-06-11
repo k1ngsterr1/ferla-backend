@@ -32,7 +32,11 @@ class ComponentRepository {
     findComponents(errors) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const components = yield sequelize_1.default.getRepository(componentModels_1.Component).findAll();
+                const components = yield sequelize_1.default.getRepository(componentModels_1.Component).findAll({
+                    order: [
+                        ['id', 'ASC'],
+                    ],
+                });
                 if (!components) {
                     errors.push(new utils_1.ErrorDetails(404, "Components not found"));
                     return null;

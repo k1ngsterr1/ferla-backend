@@ -16,12 +16,14 @@ const AddComponent_1 = require("@core/use_cases/Component/AddComponent");
 const DeleteComponent_1 = __importDefault(require("@core/use_cases/Component/DeleteComponent"));
 const GetComponents_1 = __importDefault(require("@core/use_cases/Component/GetComponents"));
 const UpdateComponent_1 = __importDefault(require("@core/use_cases/Component/UpdateComponent"));
+const UploadImage_1 = require("@core/use_cases/Component/UploadImage");
 class ComponentController {
     constructor() {
         this.addComponentUseCase = new AddComponent_1.AddComponent();
         this.getComponentsUseCase = new GetComponents_1.default();
         this.deleteComponentUseCase = new DeleteComponent_1.default();
         this.updateComponentUseCase = new UpdateComponent_1.default();
+        this.uploadImageUseCase = new UploadImage_1.UploadImage();
     }
     addComponent(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -99,6 +101,28 @@ class ComponentController {
             catch (error) {
                 console.log(error);
                 res.status(500).json({ message: "Error updating the component." });
+            }
+        });
+    }
+    uploadImage(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const errors = [];
+            try {
+                const request = {
+                    id: Number(req.params.id),
+                    code: req.body.code,
+                    value: req.body.image,
+                };
+                yield this.uploadImageUseCase.execute(request, errors);
+                if (errors.length > 0) {
+                    res.status(errors[0].code).json({ message: errors[0].details });
+                    return;
+                }
+                res.status(200).json({ message: "Сайт успешно обновлен" });
+            }
+            catch (error) {
+                console.log(error);
+                res.status(500).json({ message: "Ошибка при обновлении сайта" });
             }
         });
     }
