@@ -11,6 +11,7 @@ import {
 } from "@core/utils/Component/Request";
 import { ErrorDetails } from "@core/utils/utils";
 import { Request, Response } from "express";
+import path from "path";
 
 class ComponentController {
   private addComponentUseCase: AddComponent;
