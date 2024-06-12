@@ -29,7 +29,6 @@ class ComponentController {
   async addComponent(req: Request, res: Response): Promise<void> {
     const errors: ErrorDetails[] = [];
     try {
-      console.log("hello", req.body.code, req.body.value);
       const request: AddComponentRequest = {
         code: req.body.code,
         name: req.body.name,
