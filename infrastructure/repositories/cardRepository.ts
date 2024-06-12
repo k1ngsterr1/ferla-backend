@@ -1,7 +1,8 @@
-import { NewBlogCardInput } from "@core/utils/BlogCard/types";
 import { IBlogCardRepository } from "@core/interfaces/repositories/IBlogCartRepository";
 import { BlogCard } from "@infrastructure/models/blogCardModel";
-import sequelize from "infrastructure/config/sequelize";
+import sequelize from "@infrastructure/config/sequelize";
+import { NewBlogCardInput } from "@core/utils/BlogCard/types";
+import { ErrorDetails } from "@core/utils/utils";
 
 export class BlogCardRepository implements IBlogCardRepository {
   // Добавление карточки блога
@@ -48,5 +49,25 @@ export class BlogCardRepository implements IBlogCardRepository {
       .findByPk(primaryKey);
 
     return blogCard;
+  }
+
+  //  Получение карточек блога
+  async findBlogCards(errors: ErrorDetails[]): Promise<BlogCard[]> {
+    try {
+      const cards = await sequelize.getRepository(BlogCard).findAll();
+
+      if (!cards) {
+        errors.push(new ErrorDetails(404, "Cards not found"));
+        return null;
+      }
+
+      return cards;
+    } catch (error) {
+      console.log(error);
+      errors.push(
+        new ErrorDetails(500, "Error getting all cards from database")
+      );
+      return null;
+    }
   }
 }

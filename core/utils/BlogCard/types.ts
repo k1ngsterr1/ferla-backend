@@ -1,13 +1,11 @@
 export interface BlogCardAttributes {
-    id: string | number;
-    image: string;
-    title: string;
-    href: string;
-    createdAt: Date;
-    updatedAt: Date;
+  id: string | number;
+  image: string;
+  title: string;
+  href: string;
 }
 export type NewBlogCardInput = {
-    image: string;
-    title: string;
-    href: string;
+  image: string;
+  title: string;
+  href: string;
 };
