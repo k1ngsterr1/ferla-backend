@@ -14,10 +14,6 @@ export default class UpdateCardBlog {
     request: UpdateBlogRequest,
     errors: ErrorDetails[]
   ): Promise<void> {
-    if (isNaN(request.id)) {
-      errors.push(new ErrorDetails(400, "Invalid id."));
-      return;
-    }
 
     if (request.code !== Code) {
       errors.push(new ErrorDetails(403, "The website code is incorrect."));

@@ -3,6 +3,7 @@ import { AddCartRequest } from "@core/utils/Cart/Request";
 import { CartDetails } from "@core/utils/Cart/types";
 import { ErrorDetails } from "@core/utils/utils";
 import { CartRepository } from "@infrastructure/repositories/cartRepository";
+import { base_url } from "server";
 const Code: string = process.env.WEBSITE_CODE;
 
 export default class AddCart{
@@ -19,7 +20,7 @@ export default class AddCart{
         const newCart: CartDetails = {
             name: request.name,
             description: request.description,
-            img_url: request.img_url,
+            img_url: base_url+"/"+request.img_url,
             price: request.price,
         }
 

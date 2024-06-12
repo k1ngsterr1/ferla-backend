@@ -3,6 +3,7 @@ import DeleteBlogCard from "@core/use_cases/Blog/DeleteCardBlog";
 import GetCardsBlog from "@core/use_cases/Blog/GetCardsBlog";
 import UpdateCardBlog from "@core/use_cases/Blog/UpdateCardBlog";
 import {
+  AddBlogRequest,
   DeleteBlogRequest,
   UpdateBlogRequest,
 } from "@core/utils/BlogCard/Request";
@@ -25,10 +26,11 @@ class BlogCardController {
   async addCardBlog(req: Request, res: Response): Promise<void> {
     const errors: ErrorDetails[] = [];
     try {
-      const request: NewBlogCardInput = {
+      const request: AddBlogRequest = {
         image: req.body.image,
         title: req.body.title,
         href: req.body.href,
+        code: req.body.code,
       };
 
       const blogCard = await this.addBlogCard.execute(request, errors);
@@ -69,7 +71,7 @@ class BlogCardController {
     const errors: ErrorDetails[] = [];
     try {
       const request: UpdateBlogRequest = {
-        id: Number(req.params.id),
+        id: req.params.id,
         image: req.body.image,
         code: req.body.code,
         title: req.body.title,
@@ -94,8 +96,8 @@ class BlogCardController {
     const errors: ErrorDetails[] = [];
     try {
       const request: DeleteBlogRequest = {
-        id: Number(req.params.id),
-        code: req.body.codem,
+        id: req.params.id,
+        code: req.body.code,
       };
 
       await this.deleteBlogCard.execute(request, errors);

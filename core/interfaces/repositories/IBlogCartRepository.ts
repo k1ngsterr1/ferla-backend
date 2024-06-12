@@ -12,7 +12,7 @@ export interface IBlogCardRepository {
   deleteById?(
     primaryKey: string | number,
     errors: ErrorDetails[]
-  ): Promise<void>;
+  ): Promise<BlogCard>;
   findBlogCards(errors: ErrorDetails[]): Promise<BlogCard[] | null>;
   findByPk(
     primaryKey: string | number,

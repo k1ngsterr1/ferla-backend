@@ -10,8 +10,9 @@ import componentRoutes from "@infrastructure/routes/componentRoutes";
 import path from "path";
 import blogRoutes from "@infrastructure/routes/blogRoutes";
 
+export const main = __dirname;
 export const base_url: string =
-  "https://ferla-backend-production.up.railway.app/";
+  "https://ferla-backend-production.up.railway.app";
 
 const app = express();
 const port = process.env.PORT;
@@ -42,6 +43,7 @@ app.use("/api/carts", cartRoutes);
 
 // Blog routes
 app.use("/api/blog", blogRoutes);
+
 app.use(express.static(path.join(__dirname, "uploads")));
 
 app.listen(port, () => {
