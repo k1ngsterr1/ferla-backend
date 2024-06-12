@@ -24,21 +24,20 @@ export class BlogCardRepository implements IBlogCardRepository {
   }
 
   //   Удаление карточки блога
-  async delete(primaryKey: string | number): Promise<void> {
+  async deleteById(primaryKey: string | number, errors: ErrorDetails[]): Promise<BlogCard> {
     try {
-      const result = await sequelize.getRepository(BlogCard).destroy({
-        where: {
-          id: primaryKey,
-        },
-      });
+      const blog = await sequelize.getRepository(BlogCard).findByPk(primaryKey);
 
-      if (result === 0) {
-        throw new Error("No records found to delete.");
+      if (!blog) {
+        errors.push(new ErrorDetails(404, "Blog card not found"));
+        return;
       }
-      console.log(`Deleted ${result} record(s).`);
+
+      await blog.destroy();
+
+      return blog;
     } catch (error) {
-      console.error("Error deleting the blog card:", error);
-      throw error; // Rethrow the error if you want calling function to handle it further.
+      errors.push(new ErrorDetails(500, "Error deleting blog card"));
     }
   }
 

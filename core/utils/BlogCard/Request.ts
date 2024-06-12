@@ -1,14 +1,14 @@
-import { BlogCardAttributes } from "./types";
+import { BlogCardAttributes, NewBlogCardInput } from "./types";
 
-export interface AddBlogRequest extends BlogCardAttributes {
+export interface AddBlogRequest extends NewBlogCardInput {
   code: string;
 }
 export interface UpdateBlogRequest extends BlogCardAttributes {
-  id: number;
+  id: string;
   code: string;
 }
 
 export interface DeleteBlogRequest {
-  id: number;
+  id: string;
   code: string;
 }
