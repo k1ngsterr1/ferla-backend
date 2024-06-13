@@ -1,7 +1,8 @@
-import { NewBlogCardInput } from "@core/utils/BlogCard/types";
 import { IBlogCardRepository } from "@core/interfaces/repositories/IBlogCartRepository";
 import { BlogCard } from "@infrastructure/models/blogCardModel";
-import sequelize from "infrastructure/config/sequelize";
+import sequelize from "@infrastructure/config/sequelize";
+import { NewBlogCardInput } from "@core/utils/BlogCard/types";
+import { ErrorDetails } from "@core/utils/utils";
 
 export class BlogCardRepository implements IBlogCardRepository {
   // Добавление карточки блога
@@ -23,21 +24,20 @@ export class BlogCardRepository implements IBlogCardRepository {
   }
 
   //   Удаление карточки блога
-  async delete(primaryKey: string | number): Promise<void> {
+  async deleteById(primaryKey: string | number, errors: ErrorDetails[]): Promise<BlogCard> {
     try {
-      const result = await sequelize.getRepository(BlogCard).destroy({
-        where: {
-          id: primaryKey,
-        },
-      });
+      const blog = await sequelize.getRepository(BlogCard).findByPk(primaryKey);
 
-      if (result === 0) {
-        throw new Error("No records found to delete.");
+      if (!blog) {
+        errors.push(new ErrorDetails(404, "Blog card not found"));
+        return;
       }
-      console.log(`Deleted ${result} record(s).`);
+
+      await blog.destroy();
+
+      return blog;
     } catch (error) {
-      console.error("Error deleting the blog card:", error);
-      throw error; // Rethrow the error if you want calling function to handle it further.
+      errors.push(new ErrorDetails(500, "Error deleting blog card"));
     }
   }
 
@@ -48,5 +48,25 @@ export class BlogCardRepository implements IBlogCardRepository {
       .findByPk(primaryKey);
 
     return blogCard;
+  }
+
+  //  Получение карточек блога
+  async findBlogCards(errors: ErrorDetails[]): Promise<BlogCard[]> {
+    try {
+      const cards = await sequelize.getRepository(BlogCard).findAll();
+
+      if (!cards) {
+        errors.push(new ErrorDetails(404, "Cards not found"));
+        return null;
+      }
+
+      return cards;
+    } catch (error) {
+      console.log(error);
+      errors.push(
+        new ErrorDetails(500, "Error getting all cards from database")
+      );
+      return null;
+    }
   }
 }

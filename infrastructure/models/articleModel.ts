@@ -14,7 +14,7 @@ import {
 @Table({
     tableName: "articles",
 })
-export class Articles extends Model<ArticleAttributes> {
+export class Article extends Model<ArticleAttributes> {
     @PrimaryKey
     @AutoIncrement
     @Column(DataType.INTEGER)

@@ -9,6 +9,13 @@ export interface IBlogCardRepository {
     errors: ErrorDetails[]
   ): Promise<BlogCard>;
   update?(primaryKey: string | number, updateFields): Promise<BlogCard>;
-  delete(primaryKey: string | number): Promise<void>;
-  findByPk(primaryKey: string | number): Promise<BlogCard | null>;
+  deleteById?(
+    primaryKey: string | number,
+    errors: ErrorDetails[]
+  ): Promise<BlogCard>;
+  findBlogCards(errors: ErrorDetails[]): Promise<BlogCard[] | null>;
+  findByPk(
+    primaryKey: string | number,
+    errors: ErrorDetails[]
+  ): Promise<BlogCard | null>;
 }
