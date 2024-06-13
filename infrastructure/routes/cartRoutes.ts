@@ -25,4 +25,6 @@ router.get("/get-carts", (req, res) => cartController.getCarts(req, res));
 
 router.post("/update", upload.single('image'), (req, res) => cartController.updateCart(req, res));
 
+router.delete("/delete/:id", (req, res) => cartController.deleteCart(req, res));
+
 export default router;

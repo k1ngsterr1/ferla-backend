@@ -6,13 +6,20 @@ const multer = require("multer");
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "uploads");
+      cb(null, "uploads");
     },
     filename: function (req, file, cb) {
-        const result = file.originalname;
-    
+      const currentDate = new Date()
+        .toJSON("kz-kz")
+        .slice(0, 10)
+        .replace(/:/g, "-");
+      const hours = new Date().getHours().toString().padStart(2, "0");
+      const minutes = new Date().getHours().toString().padStart(2, "0");
+      const seconds = new Date().getSeconds().toString().padStart(2, "0");
+      const currentTime = `H=${hours}-M=${minutes}-S=${seconds}`;
+      let result =
+        currentDate.toString() + "-" + currentTime + "-" + file.originalname;
         req.body.image = result;
-    
         cb(null, result);
     },
 });
