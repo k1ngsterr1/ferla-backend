@@ -19,10 +19,14 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post("/add", upload.single('image'), (req, res) => cartController.addCart(req, res));
+router.post("/add", upload.single("image"), (req, res) =>
+  cartController.addCart(req, res)
+);
 
 router.get("/get-carts", (req, res) => cartController.getCarts(req, res));
 
-router.post("/update", upload.single('image'), (req, res) => cartController.updateCart(req, res));
+router.post("/update", upload.single("image"), (req, res) =>
+  cartController.updateCart(req, res)
+);
 
 export default router;
