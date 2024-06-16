@@ -2,6 +2,7 @@ import { IBlogCardRepository } from "@core/interfaces/repositories/IBlogCartRepo
 import { UpdateBlogRequest } from "@core/utils/BlogCard/Request";
 import { ErrorDetails } from "@core/utils/utils";
 import { BlogCardRepository } from "@infrastructure/repositories/cardRepository";
+import { base_url } from "server";
 const Code: string = process.env.WEBSITE_CODE;
 
 export default class UpdateCardBlog {
@@ -21,5 +22,19 @@ export default class UpdateCardBlog {
     }
 
     const cardBlog = await this.blogCardRepository.findByPk(request.id, errors);
+
+    if(request.href !== undefined){
+      cardBlog.href = request.href;
+    }
+    
+    if(request.title !== undefined){
+      cardBlog.title = request.title;
+    }
+    
+    if(request.image !== undefined){
+      cardBlog.image = base_url+"/"+request.image;
+    }
+
+    await cardBlog.save();
   }
 }
