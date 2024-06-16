@@ -10,6 +10,7 @@ import componentRoutes from "@infrastructure/routes/componentRoutes";
 import path from "path";
 import blogRoutes from "@infrastructure/routes/blogRoutes";
 import formRoutes from "@infrastructure/routes/formRoutes";
+import articleRoutes from "@infrastructure/routes/articleRoutes";
 
 export const main = __dirname;
 export const base_url: string =
@@ -46,6 +47,8 @@ app.use("/api/carts", cartRoutes);
 app.use("/api/blog", blogRoutes);
 
 app.use("/api/forms", formRoutes);
+
+app.use("/api/articles", articleRoutes);
 
 app.use(express.static(path.join(__dirname, "uploads")));
 
