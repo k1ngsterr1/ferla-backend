@@ -6,11 +6,11 @@ const router = express.Router();
 
 router.post("/add", (req, res) => articleController.addArticle(req, res));
 
-router.get("/get-components", (req, res) =>
+router.get("/get-articles", (req, res) =>
   articleController.getArticles(req, res)
 );
 
-router.delete("/delete/:id", (req, res) =>
+router.delete("/delete/:id/:code", (req, res) =>
   articleController.deleteArticle(req, res)
 );
 
