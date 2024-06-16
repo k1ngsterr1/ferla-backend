@@ -10,7 +10,7 @@ import {
 
 // Model for form
 @Table({
-    tableName: "form",
+    tableName: "Form",
     timestamps: false
 })
 export class Form extends Model<FormAttributes> {

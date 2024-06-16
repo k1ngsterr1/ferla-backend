@@ -1,6 +1,7 @@
 import { BlogCard } from "@infrastructure/models/blogCardModel";
 import { Cart } from "@infrastructure/models/cartModel";
 import { Component } from "@infrastructure/models/componentModels";
+import { Form } from "@infrastructure/models/formModel";
 import { Sequelize } from "sequelize-typescript";
 
 const dotenv = require("dotenv").config({ path: "../.env" });
@@ -20,7 +21,7 @@ const sequelize = new Sequelize({
       rejectUnauthorized: false,
     },
   },
-  models: [Component, Cart, BlogCard],
+  models: [Component, Cart, BlogCard, Form],
 });
 
 export default sequelize;
