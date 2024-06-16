@@ -59,7 +59,7 @@ class FormController{
         try{
             const request: DeleteFormRequest = {
                 id: Number(req.params.id),
-                code: req.body.code
+                code: req.params.code
             }
 
             await this.deleteFormUseCase.execute(request, errors);
