@@ -28,7 +28,7 @@ const upload = multer({ storage: storage });
 
 router.post("/add", upload.single("image"), (req, res) => blogController.addCardBlog(req, res));
 
-router.delete("/delete/:id", (req, res) => blogController.deleteCardBlog(req, res));
+router.delete("/delete/:id/:code", (req, res) => blogController.deleteCardBlog(req, res));
 
 router.get("/get-blogs", (req, res) => blogController.getBlogCards(req, res));
 

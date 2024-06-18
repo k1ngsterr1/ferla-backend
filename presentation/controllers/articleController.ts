@@ -55,7 +55,7 @@ class ArticleController{
         try{
             const request: DeleteArticleRequest = {
                 id: Number(req.params.id),
-                code: req.body.code
+                code: req.params.code
             }
 
             await this.deleteArticleUseCase.execute(request, errors);
@@ -93,3 +93,5 @@ class ArticleController{
         }
     }
 }
+
+export default new ArticleController();
