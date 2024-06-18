@@ -97,7 +97,7 @@ class BlogCardController {
     try {
       const request: DeleteBlogRequest = {
         id: req.params.id,
-        code: req.body.code,
+        code: req.params.code,
       };
 
       await this.deleteBlogCard.execute(request, errors);
