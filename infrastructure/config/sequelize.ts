@@ -1,3 +1,4 @@
+import { Article } from "@infrastructure/models/articleModel";
 import { BlogCard } from "@infrastructure/models/blogCardModel";
 import { Cart } from "@infrastructure/models/cartModel";
 import { Component } from "@infrastructure/models/componentModels";
@@ -21,7 +22,7 @@ const sequelize = new Sequelize({
       rejectUnauthorized: false,
     },
   },
-  models: [Component, Cart, BlogCard, Form],
+  models: [Component, Cart, BlogCard, Form, Article],
 });
 
 export default sequelize;
