@@ -12,6 +12,9 @@ class ArticleController{
     private updateArticleUseCase: UpdateArticle;
     constructor(){
         this.addArticleUseCase = new AddArticle();
+        this.getArticlesUseCase = new GetArticles();
+        this.deleteArticleUseCase = new DeleteArticle();
+        this.updateArticleUseCase = new UpdateArticle();
     }
     async addArticle(req: Request, res: Response): Promise<any>{
         const errors: ErrorDetails[] = [];
