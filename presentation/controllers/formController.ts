@@ -43,8 +43,6 @@ class FormController {
     try {
       const code: string = req.params.code;
 
-      console.log("CODE:", code);
-
       const forms = await this.getFormsUseCase.execute(code, errors);
 
       if (errors.length > 0) {
