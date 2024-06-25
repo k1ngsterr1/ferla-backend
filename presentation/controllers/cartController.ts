@@ -65,7 +65,7 @@ class CartController {
         try{
             const request: DeleteCartRequest = {
                 id: Number(req.params.id),
-                code: req.body.code
+                code: req.params.code
             }
 
             await this.deleteCartUseCase.execute(request, errors);

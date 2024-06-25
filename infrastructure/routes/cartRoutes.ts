@@ -29,6 +29,6 @@ router.post("/update", upload.single("image"), (req, res) =>
   cartController.updateCart(req, res)
 );
 
-router.delete("/delete/:id", (req, res) => cartController.deleteCart(req, res));
+router.delete("/delete/:id/:code", (req, res) => cartController.deleteCart(req, res));
 
 export default router;
