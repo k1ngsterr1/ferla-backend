@@ -1,100 +1,126 @@
 import AddArticle from "@core/use_cases/Article/AddArticle";
 import DeleteArticle from "@core/use_cases/Article/DeleteArticle";
+import GetArticleById from "@core/use_cases/Article/GetArticleById";
+import GetArticle from "@core/use_cases/Article/GetArticles";
 import GetArticles from "@core/use_cases/Article/GetArticles";
 import UpdateArticle from "@core/use_cases/Article/UpdateArticle";
-import { AddArticleRequest, DeleteArticleRequest, UpdateArticleRequest } from "@core/utils/Article/Request";
+import {
+  AddArticleRequest,
+  DeleteArticleRequest,
+  UpdateArticleRequest,
+} from "@core/utils/Article/Request";
 import { ErrorDetails } from "@core/utils/utils";
 import { Request, Response } from "express";
-class ArticleController{
-    private addArticleUseCase: AddArticle;
-    private getArticlesUseCase: GetArticles;
-    private deleteArticleUseCase: DeleteArticle;
-    private updateArticleUseCase: UpdateArticle;
-    constructor(){
-        this.addArticleUseCase = new AddArticle();
-        this.getArticlesUseCase = new GetArticles();
-        this.deleteArticleUseCase = new DeleteArticle();
-        this.updateArticleUseCase = new UpdateArticle();
+
+class ArticleController {
+  private addArticleUseCase: AddArticle;
+  private getArticlesUseCase: GetArticles;
+  private getArticleUseCase: GetArticleById;
+  private deleteArticleUseCase: DeleteArticle;
+  private updateArticleUseCase: UpdateArticle;
+
+  constructor() {
+    this.addArticleUseCase = new AddArticle();
+    this.getArticlesUseCase = new GetArticles();
+    this.getArticleUseCase = new GetArticleById();
+    this.deleteArticleUseCase = new DeleteArticle();
+    this.updateArticleUseCase = new UpdateArticle();
+  }
+
+  async addArticle(req: Request, res: Response): Promise<any> {
+    const errors: ErrorDetails[] = [];
+    try {
+      const request: AddArticleRequest = {
+        code: req.body.code,
+        content: req.body.content,
+      };
+
+      await this.addArticleUseCase.execute(request, errors);
+
+      if (errors.length > 0) {
+        return res.status(errors[0].code).json({ message: errors[0].details });
+      }
+
+      res.status(201).json({ message: "Added article succesfully" });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Error adding the article." });
     }
-    async addArticle(req: Request, res: Response): Promise<any>{
-        const errors: ErrorDetails[] = [];
-        try{
-            const request: AddArticleRequest = {
-                code: req.body.code,
-                content: req.body.content
-            }
+  }
 
-            await this.addArticleUseCase.execute(request, errors);
+  async getArticles(req: Request, res: Response): Promise<any> {
+    const errors: ErrorDetails[] = [];
+    try {
+      const articles = await this.getArticlesUseCase.execute(errors);
 
-            if(errors.length > 0){
-                return res.status(errors[0].code).json({ message: errors[0].details });
-            }
+      if (errors.length > 0) {
+        return res.status(errors[0].code).json({ message: errors[0].details });
+      }
 
-            res.status(201).json({ message: "Added article succesfully" });
-        } catch(error){
-            console.log(error);
-            res.status(500).json({ message: "Error adding the article." });
-        }
+      res.status(200).json({ articles: articles });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: `Error geting the article: ${error}` });
     }
+  }
 
-    async getArticles(req: Request, res: Response): Promise<any>{
-        const errors: ErrorDetails[] = [];
-        try{
-            const articles = await this.getArticlesUseCase.execute(errors);
+  async getArticle(req: Request, res: Response): Promise<any> {
+    const errors: ErrorDetails[] = [];
+    try {
+      const article = await this.getArticleUseCase.execute(
+        req.params.id,
+        errors
+      );
 
-            if(errors.length > 0){
-                return res.status(errors[0].code).json({ message: errors[0].details });
-            }
-
-            res.status(200).json({ articles: articles });
-        } catch(error){
-            console.log(error);
-            res.status(500).json({ message: "Error geting the article." });
-        }
+      res.status(200).json({ article: article });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: `Error getting article: ${error}` });
     }
+  }
 
-    async deleteArticle(req: Request, res: Response): Promise<any>{
-        const errors: ErrorDetails[] = [];
-        try{
-            const request: DeleteArticleRequest = {
-                id: Number(req.params.id),
-                code: req.params.code
-            }
+  async deleteArticle(req: Request, res: Response): Promise<any> {
+    const errors: ErrorDetails[] = [];
+    try {
+      const request: DeleteArticleRequest = {
+        id: Number(req.params.id),
+        code: req.params.code,
+      };
 
-            await this.deleteArticleUseCase.execute(request, errors);
+      await this.deleteArticleUseCase.execute(request, errors);
 
-            if(errors.length > 0){
-                return res.status(errors[0].code).json({ message: errors[0].details });
-            }
+      if (errors.length > 0) {
+        return res.status(errors[0].code).json({ message: errors[0].details });
+      }
 
-            res.status(200).json({ message: "Deleted article succesfully" });
-        } catch(error){
-            console.log(error);
-            res.status(500).json({ message: "Error deleting the article." });
-        }
+      res.status(200).json({ message: "Deleted article succesfully" });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Error deleting the article." });
     }
+  }
 
-    async updateArticle(req: Request, res: Response): Promise<any>{
-        const errors: ErrorDetails[] = [];
-        try{
-            const request: UpdateArticleRequest = {
-                id: Number(req.params.id),
-                code: req.body.code,
-                content: req.body.content
-            }
+  async updateArticle(req: Request, res: Response): Promise<any> {
+    const errors: ErrorDetails[] = [];
+    try {
+      const request: UpdateArticleRequest = {
+        id: Number(req.params.id),
+        code: req.body.code,
+        content: req.body.content,
+      };
 
-            await this.updateArticleUseCase.execute(request, errors);
+      await this.updateArticleUseCase.execute(request, errors);
 
-            if(errors.length > 0){
-                return res.status(errors[0].code).json({ message: errors[0].details });
-            }
+      if (errors.length > 0) {
+        return res.status(errors[0].code).json({ message: errors[0].details });
+      }
 
-            res.status(200).json({ message: "Updated article succesfully" });
-        } catch(error){
-            console.log(error);
-            res.status(500).json({ message: "Error updateing the article." });
-        }
+      res.status(200).json({ message: "Updated article succesfully" });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Error updateing the article." });
     }
+  }
 }
 
 export default new ArticleController();

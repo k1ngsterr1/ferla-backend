@@ -10,10 +10,16 @@ router.get("/get-articles", (req, res) =>
   articleController.getArticles(req, res)
 );
 
+router.get("/get-article/:id", (req, res) =>
+  articleController.getArticle(req, res)
+);
+
 router.delete("/delete/:id/:code", (req, res) =>
   articleController.deleteArticle(req, res)
 );
 
-router.post("/update/:id", (req, res) => articleController.updateArticle(req, res));
+router.post("/update/:id", (req, res) =>
+  articleController.updateArticle(req, res)
+);
 
 export default router;

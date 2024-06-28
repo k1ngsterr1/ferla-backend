@@ -3,8 +3,14 @@ import { ErrorDetails } from "@core/utils/utils";
 import { Article } from "@infrastructure/models/articleModel";
 
 export interface IArticleRepository {
-    create(articleDetails: ArticleDetails, errors: ErrorDetails[]): Promise<void | null>;
-    findById(id: number, errors: ErrorDetails[]): Promise<Article | null>;
-    findArticles(errors: ErrorDetails[]): Promise<Article[] | null>;
-    deleteById(id: number, errors: ErrorDetails[]): Promise<void | null>;
+  create(
+    articleDetails: ArticleDetails,
+    errors: ErrorDetails[]
+  ): Promise<void | null>;
+  findById(
+    id: number | string,
+    errors: ErrorDetails[]
+  ): Promise<Article | null>;
+  findArticles(errors: ErrorDetails[]): Promise<Article[] | null>;
+  deleteById(id: number, errors: ErrorDetails[]): Promise<void | null>;
 }
